@@ -8,6 +8,7 @@ Metadata:
         Label: 
           default: "Network Configuration"
         Parameters: 
+          - VPC
           - VirtualGateway
           - LocalIPRange
       - 
