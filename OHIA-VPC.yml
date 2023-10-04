@@ -29,6 +29,11 @@ Metadata:
           - CidrPrivateSubnetD2
 
 Parameters:
+  VPC:
+    AllowedPattern: 'vpc-[A-Fa-f0-9]{17}'
+    Default: vpc-1234567890abcdefA
+    Description: Existing VPC Virtual Gateway ID IE- vgw-0a8690e8fad111f91
+    Type: String
   VirtualGateway:
     AllowedPattern: 'vgw-[A-Fa-f0-9]{17}'
     Default: vgw-1234567890abcdefA
@@ -106,21 +111,6 @@ Parameters:
     Type: String
 
 Resources:
-
-  VPC:
-    Type: AWS::EC2::VPC
-    Properties:
-      CidrBlock: !Ref CidrBlock
-      EnableDnsHostnames: true
-      EnableDnsSupport: true
-    Metadata:
-      cfn_nag:
-        rules_to_suppress:
-          - id: W60
-            reason: VPC Flow log is out of scope for this POC and will be added later.
-      Tags:
-        - Key: "Name"
-          Value: !Sub '${AWS::StackName}:UCLAH-OHIA-HPC'
 
   PublicSubnetA:
     Type: AWS::EC2::Subnet
